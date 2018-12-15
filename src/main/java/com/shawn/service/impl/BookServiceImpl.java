@@ -1,21 +1,19 @@
 package com.shawn.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.shawn.model.entity.Book;
 import com.shawn.model.entity.BookWithBookStore;
 import com.shawn.repository.BookRepository;
 import com.shawn.service.BookService;
 import com.shawn.util.PageUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-/**
- * @author Xiaoyue Xiao
- */
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -44,11 +42,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<String> getAllBookNames() {
-        return bookRepository
-                .selectAllBooks()
-                .stream()
-                .map(Book::getName)
-                .collect(Collectors.toList());
+        return bookRepository.selectAllBooks().stream().map(Book::getName).collect(Collectors.toList());
     }
 
     @Override

@@ -1,14 +1,11 @@
 package com.shawn.service;
 
-import com.shawn.model.entity.Book;
-import com.shawn.model.entity.BookWithBookStore;
-
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Xiaoyue Xiao
- */
+import com.shawn.model.entity.Book;
+import com.shawn.model.entity.BookWithBookStore;
+
 public interface BookService {
 
     Optional<Book> getBookById(Long id);

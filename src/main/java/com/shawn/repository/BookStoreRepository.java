@@ -1,13 +1,10 @@
 package com.shawn.repository;
 
+import java.util.List;
+
 import com.shawn.model.entity.BookStore;
 import com.shawn.model.entity.BookStoreWithBooks;
 
-import java.util.List;
-
-/**
- * @author Xiaoyue Xiao
- */
 public interface BookStoreRepository {
 
     BookStore selectBookStoreById(Long id);

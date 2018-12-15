@@ -1,12 +1,9 @@
 package com.shawn.repository;
 
-import com.shawn.model.entity.User;
-
 import java.util.List;
 
-/**
- * @author Xiaoyue Xiao
- */
+import com.shawn.model.entity.User;
+
 public interface UserRepository {
 
     User selectUserById(Long id);
