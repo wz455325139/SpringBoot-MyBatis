@@ -1,6 +1,5 @@
 package com.shawn.security;
 
-import com.shawn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +13,8 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
-/**
- * @author Xiaoyue Xiao
- */
+import com.shawn.service.UserService;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -32,20 +30,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients
-            .inMemory()
-                .withClient("client")
-                    .authorizedGrantTypes("password", "refresh_token")
-                    .scopes("read", "write")
-                    .secret("fucksecurity");
+        clients.inMemory().withClient("client").authorizedGrantTypes("password", "refresh_token")
+            .scopes("read", "write").secret("fucksecurity");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints
-            .tokenStore(tokenStore)
-            .authenticationManager(authenticationManager)
-            .userDetailsService(userService);
+        endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager).userDetailsService(userService);
     }
 
     @Bean

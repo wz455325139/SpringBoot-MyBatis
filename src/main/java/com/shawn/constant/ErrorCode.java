@@ -1,8 +1,5 @@
 package com.shawn.constant;
 
-/**
- * @author Xiaoyue Xiao
- */
 public class ErrorCode {
 
     public static final int SERVER_INTERNAL_ERROR = 1000;
@@ -13,7 +10,6 @@ public class ErrorCode {
     /**
      * Prevent instantiation
      */
-    private ErrorCode() {
-    }
+    private ErrorCode() {}
 
 }

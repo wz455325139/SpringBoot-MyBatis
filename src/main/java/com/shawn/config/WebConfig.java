@@ -13,7 +13,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import com.shawn.filter.AuthFilter;
 
 @Configuration
-public class AuthConfig {
+public class WebConfig {
 
     @Bean
     public FilterRegistrationBean authFilterRegistrationBean() {

@@ -24,9 +24,6 @@ import com.shawn.service.BookService;
 import com.shawn.util.PageUtil;
 import com.shawn.web.exception.ResourceNotFoundException;
 
-/**
- * @author Xiaoyue Xiao
- */
 @RestController
 @RequestMapping("/books")
 public class BookController {

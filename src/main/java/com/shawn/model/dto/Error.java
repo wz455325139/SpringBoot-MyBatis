@@ -1,16 +1,13 @@
 package com.shawn.model.dto;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
-/**
- * @author Xiaoyue Xiao
- */
 @Accessors(chain = true)
 @NoArgsConstructor
 @Getter

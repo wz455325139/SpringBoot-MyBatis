@@ -1,8 +1,5 @@
 package com.shawn.constant;
 
-/**
- * @author Xiaoyue Xiao
- */
 public class ResourceNameConstant {
 
     public static final String BOOK = "book";
@@ -10,7 +7,6 @@ public class ResourceNameConstant {
     /**
      * Prevent instantiation
      */
-    private ResourceNameConstant() {
-    }
+    private ResourceNameConstant() {}
 
 }

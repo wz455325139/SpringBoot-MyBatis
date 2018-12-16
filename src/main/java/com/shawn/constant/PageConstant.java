@@ -1,8 +1,5 @@
 package com.shawn.constant;
 
-/**
- * @author Xiaoyue Xiao
- */
 public class PageConstant {
 
     public static final int PAGE = 1; // Default page number
@@ -11,7 +8,6 @@ public class PageConstant {
     /**
      * Prevent instantiation
      */
-    private PageConstant() {
-    }
+    private PageConstant() {}
 
 }

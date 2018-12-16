@@ -1,19 +1,17 @@
 package com.shawn.service.impl;
 
-import com.shawn.model.dto.CustomUserDetails;
-import com.shawn.model.entity.User;
-import com.shawn.repository.UserRepository;
-import com.shawn.service.UserService;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.shawn.model.dto.CustomUserDetails;
+import com.shawn.model.entity.User;
+import com.shawn.repository.UserRepository;
+import com.shawn.service.UserService;
 
-/**
- * @author Xiaoyue Xiao
- */
 @Service
 public class UserServiceImpl implements UserService {
 

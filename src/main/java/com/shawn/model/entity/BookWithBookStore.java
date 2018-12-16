@@ -6,9 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-/**
- * @author Xiaoyue Xiao
- */
 @Accessors(chain = true)
 @NoArgsConstructor
 @Getter
