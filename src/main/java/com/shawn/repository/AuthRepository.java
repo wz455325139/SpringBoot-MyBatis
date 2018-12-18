@@ -4,6 +4,5 @@ import com.shawn.model.entity.AuthEntity;
 
 public interface AuthRepository {
 
-    AuthEntity selectByToken(String token);
-
+	AuthEntity selectByweChatIdAndToken(String weChatId, String authToken);
 }

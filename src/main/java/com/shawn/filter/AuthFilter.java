@@ -12,14 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.shawn.constant.Response;
-import com.shawn.model.entity.AuthEntity;
-import com.shawn.repository.AuthRepository;
+import com.shawn.service.AuthenticationService;
+import com.shawn.util.ApplicationContextUtils;
 
 /**
  * 权限验证过滤器
@@ -28,8 +29,7 @@ public class AuthFilter implements Filter {
 
     private final static Logger log = LoggerFactory.getLogger(AuthFilter.class);
 
-    @Autowired
-    private AuthRepository repository;
+    private AuthenticationService authenticationService;
 
     private String[] includeUrls = new String[] {"/loginPage", "/login", "/loginfail"};
 
@@ -42,6 +42,11 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException {
 
+        if (authenticationService == null) {
+            authenticationService =
+                   ApplicationContextUtils.getApplicationContext().getBean(AuthenticationService.class);
+        }
+
         HttpServletRequest req = (HttpServletRequest)request;
         String uri = req.getRequestURI();
         boolean needFilter = isNeedFilter(uri);
@@ -53,29 +58,13 @@ public class AuthFilter implements Filter {
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
+        String weChatId = req.getHeader("we-chat-id");
         String token = req.getHeader("token");
         Response res = new Response();
         boolean isFilter = false;
-        if (null == token || token.isEmpty()) {
+        if (token == null || weChatId == null || authenticationService.confirmToken(weChatId, token)) {
             res.setSuccess(false);
-            res.setErrorCode("403");
-            res.setErrorMessage("token没有认证通过!原因为：客户端请求参数中无token信息");
-        } else {
-            AuthEntity auth = repository.selectByToken(token);
-            if (null == auth) {
-                res.setSuccess(false);
-                res.setErrorCode("403");
-                res.setErrorMessage("token没有认证通过!原因为：客户端请求中认证的token信息无效，请查看申请流程中的正确token信息");
-            }
-            // else if((auth.getStatus() == 0)){
-            // res.setSuccess(false);
-            // res.setErrorCode("401");
-            // res.setErrorMessage("该token目前已处于停用状态，请联系邮件系统管理员确认!");
-            // }
-            else {
-                isFilter = true;
-                res.setSuccess(true);
-            }
+            res.setErrorMessage("token没有认证通过!原因为：客户端请求中认证的token信息无效，请查看申请流程中的正确token信息");
         }
 
         if (!res.isSuccess()) {

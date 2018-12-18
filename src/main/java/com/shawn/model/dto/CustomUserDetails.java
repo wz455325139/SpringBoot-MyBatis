@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.shawn.model.entity.User;
-
-import lombok.Getter;
-import lombok.ToString;
 
 @Getter
 @ToString
