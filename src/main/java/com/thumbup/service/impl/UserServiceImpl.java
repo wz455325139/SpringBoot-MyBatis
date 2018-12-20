@@ -3,11 +3,8 @@ package com.thumbup.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.thumbup.model.dto.CustomUserDetails;
 import com.thumbup.model.entity.User;
 import com.thumbup.repository.UserRepository;
 import com.thumbup.service.UserService;
@@ -20,18 +17,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.selectUserByUsername(username);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("Could not find the user '" + username + "'");
-        }
-
-        // Not involve authorities, so pass null to authorities
-        return new CustomUserDetails(user, true, true, true, true, null);
     }
 
     @Override

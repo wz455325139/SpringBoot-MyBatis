@@ -2,11 +2,9 @@ package com.thumbup.service;
 
 import java.util.Optional;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import com.thumbup.model.entity.User;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
     Optional<User> getUserById(Long id);
 
